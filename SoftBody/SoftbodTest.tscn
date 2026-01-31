@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b3phsaphmogq7"]
+
+[ext_resource type="ArrayMesh" uid="uid://s7bqbccmedp7" path="res://Placeholders/place.obj" id="1_d25rr"]
+[ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="1_x0qe0"]
+[ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_ej6tx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
+cull_mode = 2
+albedo_texture = ExtResource("2_ej6tx")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d25rr"]
+
+[sub_resource type="Sky" id="Sky_ej6tx"]
+sky_material = SubResource("ProceduralSkyMaterial_d25rr")
+
+[sub_resource type="Environment" id="Environment_d25rr"]
+background_mode = 2
+sky = SubResource("Sky_ej6tx")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.45
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ej6tx"]
+
+[sub_resource type="Compositor" id="Compositor_vok87"]
+
+[node name="Node3D" type="Node3D" unique_id=972586230]
+
+[node name="MaskPlaceholder" type="MeshInstance3D" parent="." unique_id=2087618148]
+transform = Transform3D(-0.23788933, 0, 0.97129226, 0, 1, 0, -0.97129226, 0, -0.23788933, 0, 0, 0)
+mesh = ExtResource("1_d25rr")
+surface_material_override/0 = SubResource("StandardMaterial3D_d25rr")
+script = ExtResource("1_x0qe0")
+tension = 10.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1241247983]
+environment = SubResource("Environment_d25rr")
+camera_attributes = SubResource("CameraAttributesPractical_ej6tx")
+compositor = SubResource("Compositor_vok87")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=310944428]
+transform = Transform3D(-0.31975102, -0.45787987, 0.8295211, 0, 0.87548256, 0.4832497, -0.94750166, 0.15451959, -0.27993643, 3.2848637, 1.8251534, -1.3705785)
+current = true
