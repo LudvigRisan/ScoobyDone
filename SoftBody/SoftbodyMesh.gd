@@ -1,4 +1,5 @@
 extends MeshInstance3D
+@onready var debug_liner: DebugLiner = $"../DebugLiner"
 
 @export
 var tension: float = 0.3
@@ -6,6 +7,8 @@ var tension: float = 0.3
 var dampening: float = 0.2
 @export
 var physicsPrefab: PackedScene
+@export
+var mergeTreshold: float = 0.001
 
 var vertices: PackedVector3Array
 var normals: PackedVector3Array
@@ -18,6 +21,7 @@ var offsets: PackedFloat32Array
 var offsetIndices: PackedInt32Array
 
 var orbs: Array[RigidBody3D]
+var orbConnections: PackedInt32Array
 
 func _ready() -> void:
 	arrayMesh = mesh as ArrayMesh
@@ -29,10 +33,26 @@ func _ready() -> void:
 	uvs = arrays[arrayMesh.ARRAY_TEX_UV]
 	indices = arrays[arrayMesh.ARRAY_INDEX]
 	
+	for i in range(vertices.size()):
+		var orbIndex: int = -1
+		for j in range(orbs.size()):
+			if orbs[j].position.distance_squared_to(vertices[i]) < mergeTreshold:
+				orbIndex = j
+		
+		if orbIndex == -1:
+			var newOrb: RigidBody3D = physicsPrefab.instantiate() as RigidBody3D
+			add_child(newOrb)
+			newOrb.position = vertices[i]
+			orbs.append(newOrb)
+			orbIndex = orbs.size() - 1
+		
+		orbConnections.append(orbIndex)
+		
+	
 	for i in range(0, indices.size(), 3):
-		tryAddOffset(i, i + 1)
-		tryAddOffset(i, i + 2)
-		tryAddOffset(i + 1, i + 2)
+		tryAddOffset(orbConnections[indices[i]], orbConnections[indices[i + 1]])
+		tryAddOffset(orbConnections[indices[i]], orbConnections[indices[i + 1]])
+		tryAddOffset(orbConnections[indices[i + 1]], orbConnections[indices[i + 2]])
 	
 
 func tryAddOffset(a: int, b: int) -> void:
@@ -41,22 +61,30 @@ func tryAddOffset(a: int, b: int) -> void:
 		or (a == offsetIndices[i + 1] and b == offsetIndices[i]):
 			return
 	
-	offsetIndices.append(indices[a])
-	offsetIndices.append(indices[b])
-	offsets.append(vertices[indices[a]].distance_to(vertices[indices[b]]))
+	offsetIndices.append(a)
+	offsetIndices.append(b)
+	offsets.append(orbs[a].position.distance_to(orbs[b].position))
 
 func hooke(deviation: float, velocity: float) -> float:
 	return (tension * deviation) - (dampening * velocity)
 
-func calculateForce(a: int, b: int, offset: float, delta: float) -> void:
-	var deviation: float = vertices[a].distance_to(vertices[b]) - offset
-	var force: Vector3 = hooke(deviation,  0) * vertices[a].direction_to(vertices[b])
-	vertices[a] += force * delta
-	vertices[b] -= force * delta
+func calculateForce(a: int, b: int, offset: float) -> void:
+	var deviation: float = orbs[a].position.distance_to(orbs[b].position) - offset
+	var direction = orbs[a].position.direction_to(orbs[b].position)
+	var velocity: float = (orbs[a].linear_velocity - orbs[b].linear_velocity).project(direction).length()
+	var force: Vector3 = hooke(deviation,  velocity) * direction
+	orbs[a].apply_force(force)
+	orbs[b].apply_force(-force)
+	
+	#debug_liner.drawLine(orbs[a].position, orbs[a].position + force * 10)
+	#debug_liner.drawLine(orbs[b].position, orbs[b].position - force * 10)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	for i in range(0, offsetIndices.size(), 2):
-		calculateForce(offsetIndices[i], offsetIndices[i + 1], offsets[i * 0.5], delta)
+		calculateForce(offsetIndices[i], offsetIndices[i + 1], offsets[i * 0.5])
+	
+	for i in range(vertices.size()):
+		vertices[i] = orbs[orbConnections[i]].position
 	
 	var arrays: Array
 	arrays.resize(arrayMesh.ARRAY_MAX)
@@ -71,6 +99,6 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
-		for i in range(vertices.size()):
-			vertices[i] += Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1))
-		print("boop")
+		for i in range(orbs.size()):
+			orbs[i].apply_impulse(Vector3(randf_range(-1, 1), randf_range(-1, 1), randf_range(-1, 1)))
+		
