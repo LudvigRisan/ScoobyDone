@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b3phsaphmogq7"]
+
+[ext_resource type="ArrayMesh" uid="uid://bjekuulbs4e3o" path="res://Placeholders/DIVER.obj" id="1_7dpk5"]
+[ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="1_x0qe0"]
+[ext_resource type="Texture2D" uid="uid://bxo0umtsnofgs" path="res://Placeholders/Diver_Base_color.png" id="2_is4af"]
+[ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_vok87"]
+[ext_resource type="Script" uid="uid://doa4gyt80cuhp" path="res://SoftBody/debug_liner.gd" id="5_7dpk5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
+cull_mode = 2
+albedo_texture = ExtResource("2_is4af")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d25rr"]
+
+[sub_resource type="Sky" id="Sky_ej6tx"]
+sky_material = SubResource("ProceduralSkyMaterial_d25rr")
+
+[sub_resource type="Environment" id="Environment_d25rr"]
+background_mode = 2
+sky = SubResource("Sky_ej6tx")
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 2.45
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ej6tx"]
+
+[sub_resource type="Compositor" id="Compositor_vok87"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_7dpk5"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dpk5"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7dpk5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7dpk5"]
+
+[node name="Node3D" type="Node3D" unique_id=972586230]
+
+[node name="MaskPlaceholder" type="MeshInstance3D" parent="." unique_id=2087618148]
+mesh = ExtResource("1_7dpk5")
+surface_material_override/0 = SubResource("StandardMaterial3D_d25rr")
+script = ExtResource("1_x0qe0")
+tension = 1240.435
+physicsPrefab = ExtResource("4_vok87")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1241247983]
+environment = SubResource("Environment_d25rr")
+camera_attributes = SubResource("CameraAttributesPractical_ej6tx")
+compositor = SubResource("Compositor_vok87")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=310944428]
+transform = Transform3D(-0.31975055, -0.81390333, 0.48509902, 0, 0.5119769, 0.85899925, -0.9475018, 0.27466547, -0.16370489, 1.0680317, 2.186639, -0.117791116)
+current = true
+
+[node name="DebugLiner" type="MeshInstance3D" parent="." unique_id=254504228]
+visible = false
+mesh = SubResource("ArrayMesh_7dpk5")
+script = ExtResource("5_7dpk5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1504699499]
+transform = Transform3D(6.955, 0, 0, 0, 6.955, 0, 0, 0, 6.955, 0, -3.7660398, 0)
+visible = false
+physics_material_override = SubResource("PhysicsMaterial_7dpk5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1092674756]
+mesh = SubResource("SphereMesh_7dpk5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1618171975]
+shape = SubResource("SphereShape3D_7dpk5")

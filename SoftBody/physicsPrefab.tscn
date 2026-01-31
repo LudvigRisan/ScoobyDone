@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://dqaswduc33hja"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_nwvg4"]
+margin = 0.005
+radius = 0.01
+
+[node name="PhysicsPrefab" type="RigidBody3D" unique_id=791610409]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 0.0
+linear_damp = 14.925
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2078231437]
+shape = SubResource("SphereShape3D_nwvg4")
