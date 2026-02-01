@@ -19,7 +19,6 @@ func _input(event):
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			var rayOrigin: Vector3 = project_ray_origin(event.position)
 			var rayDir: Vector3 = project_ray_normal(event.position)
-			print(rayOrigin)
 			var state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
 			
 			var params: PhysicsRayQueryParameters3D = PhysicsRayQueryParameters3D.new()
@@ -57,8 +56,6 @@ func _input(event):
 			var pos: Vector3 = rayOrigin + (rayDir * heldDist)
 			var movement: Vector3 = pos - lastHeldPos
 			lastHeldPos = pos
-			
-			print(rayOrigin)
 			
 			for i in heldPoints.size():
 				heldPoints[i].apply_impulse(movement * dragForce * heldPowers[i])
