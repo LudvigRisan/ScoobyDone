@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://5pkoxsmf2fb5" path="res://Heads/FEEESH.png" id="4_h3p3v"]
 [ext_resource type="PackedScene" uid="uid://bvx238oy64qhd" path="res://PrefabParts/cam.tscn" id="6_pjcwn"]
 [ext_resource type="PackedScene" uid="uid://i828fv08hjya" path="res://PrefabParts/winDetector.tscn" id="7_h3p3v"]
-[ext_resource type="PackedScene" uid="uid://bn0xh01d62d03" path="res://GameScene.tscn" id="8_nk63b"]
+[ext_resource type="PackedScene" uid="uid://rka2y5opv5oq" path="res://MainMenu/MainMenu.tscn" id="8_0auel"]
 [ext_resource type="Script" uid="uid://cmcplqfbvk130" path="res://SoftBody/Timer.gd" id="8_ubqu2"]
 [ext_resource type="PackedScene" uid="uid://sdadws7ut8nk" path="res://GameScenes/Lagoon/Lurker Lagoon.fbx" id="10_vlwx7"]
 [ext_resource type="AudioStream" uid="uid://ublt65dk32uw" path="res://Sounds/Underwater mask.mp3" id="11_0auel"]
@@ -92,7 +92,7 @@ physicsParent = NodePath("../MaskPlaceholder")
 
 [node name="WinDetection" parent="." unique_id=699719954 instance=ExtResource("7_h3p3v")]
 transform = Transform3D(1.06, 0, 0, 0, 1.06, 0, 0, 0, 1.06, 0, 0, 0)
-nextScene = ExtResource("8_nk63b")
+nextScene = ExtResource("8_0auel")
 
 [node name="Label3D" type="Label3D" parent="." unique_id=2101882444]
 transform = Transform3D(0.03603529, 0, -0.9042822, 0, 0.9049999, 0, 0.9042822, 0, 0.03603529, -3.2062256, 1.6681336, -1.9755664)
