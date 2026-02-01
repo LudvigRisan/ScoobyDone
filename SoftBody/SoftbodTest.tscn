@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_ej6tx"]
 [ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_vok87"]
 [ext_resource type="Script" uid="uid://b5nql880g2y2k" path="res://SoftBody/CamScript.gd" id="6_3w1w3"]
+[ext_resource type="Script" uid="uid://jiagxdqiu4kj" path="res://SoftBody/WinDetector.gd" id="6_is4af"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
 cull_mode = 2
@@ -34,6 +35,9 @@ rough = true
 [sub_resource type="SphereMesh" id="SphereMesh_7dpk5"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7dpk5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_is4af"]
+radius = 1.275
 
 [node name="Node3D" type="Node3D" unique_id=972586230]
 
@@ -72,3 +76,11 @@ mesh = SubResource("SphereMesh_7dpk5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1618171975]
 shape = SubResource("SphereShape3D_7dpk5")
+
+[node name="WinDetection" type="Area3D" parent="." unique_id=967957051]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("6_is4af")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinDetection" unique_id=1916898572]
+shape = SubResource("SphereShape3D_is4af")
