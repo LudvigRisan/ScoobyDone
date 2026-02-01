@@ -4,7 +4,6 @@
 [ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="1_x0qe0"]
 [ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_ej6tx"]
 [ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_vok87"]
-[ext_resource type="Script" uid="uid://doa4gyt80cuhp" path="res://SoftBody/debug_liner.gd" id="5_7dpk5"]
 [ext_resource type="Script" uid="uid://b5nql880g2y2k" path="res://SoftBody/CamScript.gd" id="6_3w1w3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
@@ -28,8 +27,6 @@ ambient_light_energy = 2.45
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ej6tx"]
 
 [sub_resource type="Compositor" id="Compositor_vok87"]
-
-[sub_resource type="ArrayMesh" id="ArrayMesh_7dpk5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dpk5"]
 
@@ -63,14 +60,8 @@ current = true
 script = ExtResource("6_3w1w3")
 physicsParent = NodePath("../MaskPlaceholder")
 
-[node name="DebugLiner" type="MeshInstance3D" parent="." unique_id=254504228]
-visible = false
-mesh = SubResource("ArrayMesh_7dpk5")
-script = ExtResource("5_7dpk5")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1504699499]
-transform = Transform3D(6.955, 0, 0, 0, 6.955, 0, 0, 0, 6.955, 0, -3.7660398, 0)
-visible = false
+transform = Transform3D(1.9, 0, 0, 0, 1.9, 0, 0, 0, 1.9, 0, -0.006126404, 0)
 physics_material_override = SubResource("PhysicsMaterial_7dpk5")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1092674756]

@@ -1,5 +1,4 @@
 extends MeshInstance3D
-@onready var debug_liner: DebugLiner = $"../DebugLiner"
 @onready var collision: CollisionShape3D = $statics/CollisionShape3D
 
 @export
@@ -79,9 +78,6 @@ func calculateForce(a: int, b: int, offset: float) -> void:
 	var force: Vector3 = hooke(deviation,  velocity) * direction
 	orbs[a].apply_force(force)
 	orbs[b].apply_force(-force)
-	
-	#debug_liner.drawLine(orbs[a].position, orbs[a].position + force * 10)
-	#debug_liner.drawLine(orbs[b].position, orbs[b].position - force * 10)
 
 func _physics_process(delta: float) -> void:
 	for i in range(0, offsetIndices.size(), 2):
