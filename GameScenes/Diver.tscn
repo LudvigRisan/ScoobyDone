@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" uid="uid://bx2hjdocb5nr2" path="res://Heads/head.obj" id="2_jaf58"]
 [ext_resource type="ArrayMesh" uid="uid://b71u34s8kogcm" path="res://Masks/DIVER.obj" id="3_pjcwn"]
 [ext_resource type="Texture2D" uid="uid://5pkoxsmf2fb5" path="res://Heads/FEEESH.png" id="4_h3p3v"]
+[ext_resource type="Texture2D" uid="uid://df1q1ffv5ott7" path="res://Heads/tied_up_fish_file_png.png" id="6_gui3u"]
 [ext_resource type="PackedScene" uid="uid://bvx238oy64qhd" path="res://PrefabParts/cam.tscn" id="6_pjcwn"]
 [ext_resource type="PackedScene" uid="uid://i828fv08hjya" path="res://PrefabParts/winDetector.tscn" id="7_h3p3v"]
 [ext_resource type="PackedScene" uid="uid://rka2y5opv5oq" path="res://MainMenu/MainMenu.tscn" id="8_0auel"]
@@ -34,6 +35,12 @@ data = PackedVector3Array(-0.6448, 0.47579998, -0.55799997, -0.6448, 0.559, 0, -
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nk63b"]
 albedo_texture = ExtResource("4_h3p3v")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v52l1"]
+transparency = 1
+albedo_texture = ExtResource("6_gui3u")
+
+[sub_resource type="QuadMesh" id="QuadMesh_nm6nv"]
 
 [node name="Diver" type="Node3D" unique_id=816583023]
 
@@ -83,6 +90,11 @@ shape = SubResource("ConcavePolygonShape3D_h3p3v")
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_nk63b")
 mesh = ExtResource("2_jaf58")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/Head" unique_id=188334798]
+transform = Transform3D(-0.45346197, 0, 1.103007, 0, 7.6058807, 0, -7.5923514, 0, -0.06587837, -0.05815557, -2.4681664, 0.14911917)
+material_override = SubResource("StandardMaterial3D_v52l1")
+mesh = SubResource("QuadMesh_nm6nv")
 
 [node name="Camera3D" parent="." unique_id=1252350004 node_paths=PackedStringArray("physicsParent") instance=ExtResource("6_pjcwn")]
 transform = Transform3D(0.07234448, 0.17825727, -0.98132086, 0, 0.983899, 0.17872559, 0.9973797, -0.012929809, 0.07117966, -4.6490507, 0.95577604, -0.016221046)
