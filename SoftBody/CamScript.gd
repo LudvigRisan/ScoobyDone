@@ -49,17 +49,20 @@ func _input(event):
 			
 		
 	elif event is InputEventMouseMotion:
-		if held:
+		if held && not heldPoints.is_empty():
 			var rayOrigin: Vector3 = project_ray_origin(event.position)
 			var rayDir: Vector3 = project_ray_normal(event.position)
 			
-			var pos: Vector3 = rayOrigin + (rayDir * heldDist)
-			var movement: Vector3 = pos - lastHeldPos
-			lastHeldPos = pos
+			lastHeldPos = rayOrigin + (rayDir * heldDist)
 			
-			for i in heldPoints.size():
-				heldPoints[i].apply_impulse(movement * dragForce * heldPowers[i])
-			
+		
+	
+
+func _process(delta: float) -> void:
+	if held && not heldPoints.is_empty():
+		var movement: Vector3 = lastHeldPos - heldPoints[0].position
+		for i in heldPoints.size():
+			heldPoints[i].apply_impulse(movement * dragForce * heldPowers[i])
 			
 		
 	
