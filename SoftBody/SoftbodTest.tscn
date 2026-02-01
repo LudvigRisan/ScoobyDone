@@ -1,14 +1,18 @@
 [gd_scene format=3 uid="uid://b3phsaphmogq7"]
 
-[ext_resource type="ArrayMesh" uid="uid://bjekuulbs4e3o" path="res://Placeholders/DIVER.obj" id="1_7dpk5"]
+[ext_resource type="ArrayMesh" uid="uid://dhk3hwencyis" path="res://Placeholders/place(1).obj" id="1_7dpk5"]
 [ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="1_x0qe0"]
-[ext_resource type="Texture2D" uid="uid://bxo0umtsnofgs" path="res://Placeholders/Diver_Base_color.png" id="2_is4af"]
+[ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_ej6tx"]
 [ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_vok87"]
 [ext_resource type="Script" uid="uid://doa4gyt80cuhp" path="res://SoftBody/debug_liner.gd" id="5_7dpk5"]
+[ext_resource type="Script" uid="uid://b5nql880g2y2k" path="res://SoftBody/CamScript.gd" id="6_3w1w3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
 cull_mode = 2
-albedo_texture = ExtResource("2_is4af")
+albedo_texture = ExtResource("2_ej6tx")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_is4af"]
+backface_collision = true
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d25rr"]
 
@@ -42,14 +46,22 @@ script = ExtResource("1_x0qe0")
 tension = 1240.435
 physicsPrefab = ExtResource("4_vok87")
 
+[node name="statics" type="StaticBody3D" parent="MaskPlaceholder" unique_id=1436075487]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MaskPlaceholder/statics" unique_id=1765531546]
+shape = SubResource("ConcavePolygonShape3D_is4af")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1241247983]
 environment = SubResource("Environment_d25rr")
 camera_attributes = SubResource("CameraAttributesPractical_ej6tx")
 compositor = SubResource("Compositor_vok87")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=310944428]
-transform = Transform3D(-0.31975055, -0.81390333, 0.48509902, 0, 0.5119769, 0.85899925, -0.9475018, 0.27466547, -0.16370489, 1.0680317, 2.186639, -0.117791116)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=310944428 node_paths=PackedStringArray("physicsParent")]
+transform = Transform3D(0.0025460175, 0.025380166, -0.9996747, 0, 0.9996779, 0.025380248, 0.9999968, -6.461856e-05, 0.0025451975, -3.809359, 0.5903368, -0.24731348)
 current = true
+script = ExtResource("6_3w1w3")
+physicsParent = NodePath("../MaskPlaceholder")
 
 [node name="DebugLiner" type="MeshInstance3D" parent="." unique_id=254504228]
 visible = false

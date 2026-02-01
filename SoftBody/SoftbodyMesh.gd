@@ -1,5 +1,6 @@
 extends MeshInstance3D
 @onready var debug_liner: DebugLiner = $"../DebugLiner"
+@onready var collision: CollisionShape3D = $statics/CollisionShape3D
 
 @export
 var tension: float = 0.3
@@ -23,8 +24,11 @@ var offsetIndices: PackedInt32Array
 var orbs: Array[RigidBody3D]
 var orbConnections: PackedInt32Array
 
+var collissionMesh: ConcavePolygonShape3D
+
 func _ready() -> void:
 	arrayMesh = mesh as ArrayMesh
+	collissionMesh = collision.shape as ConcavePolygonShape3D
 	
 	var arrays: Array = arrayMesh.surface_get_arrays(0)
 	
@@ -86,6 +90,7 @@ func _physics_process(delta: float) -> void:
 	for i in range(vertices.size()):
 		vertices[i] = orbs[orbConnections[i]].position
 	
+	
 	var arrays: Array
 	arrays.resize(arrayMesh.ARRAY_MAX)
 	arrays[arrayMesh.ARRAY_VERTEX] = vertices
@@ -95,6 +100,13 @@ func _physics_process(delta: float) -> void:
 	
 	arrayMesh.clear_surfaces()
 	arrayMesh.add_surface_from_arrays(arrayMesh.PRIMITIVE_TRIANGLES, arrays)
+	
+	var collisionFaces: PackedVector3Array
+	collisionFaces.resize(indices.size())
+	for i in indices.size():
+		collisionFaces[i] = vertices[indices[i]]
+	
+	collissionMesh.set_faces(collisionFaces)
 	
 
 func _input(event: InputEvent) -> void:
