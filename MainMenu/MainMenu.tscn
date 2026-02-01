@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://rka2y5opv5oq"]
+
+[ext_resource type="Script" uid="uid://bdq7qbq1071or" path="res://MainMenu/menu.gd" id="1_otibh"]
+[ext_resource type="Texture2D" uid="uid://b2sche2n4v6gc" path="res://MainMenu/start_gaming_now.png" id="2_cruaa"]
+[ext_resource type="Texture2D" uid="uid://c2dqlxjlcaful" path="res://MainMenu/The_Maskening_logo.png" id="3_b76km"]
+
+[node name="Menu" type="Control" unique_id=1447763231]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_otibh")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2025002708]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 2.0
+offset_right = 3580.0
+offset_bottom = 3122.0
+scale = Vector2(0.25, 0.25)
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer" unique_id=1067607212]
+layout_mode = 2
+texture_normal = ExtResource("2_cruaa")
+
+[node name="TheMaskeningLogo" type="Sprite2D" parent="HBoxContainer" unique_id=731312331]
+position = Vector2(1824, 211.99998)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("3_b76km")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=980822785]
+position = Vector2(578, 325)
+
+[connection signal="pressed" from="HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
