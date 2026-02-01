@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://i828fv08hjya"]
+
+[ext_resource type="Script" uid="uid://jiagxdqiu4kj" path="res://SoftBody/WinDetector.gd" id="1_3t0rj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_is4af"]
+radius = 1.275
+
+[node name="WinDetection" type="Area3D" unique_id=699719954]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_3t0rj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1415656528]
+shape = SubResource("SphereShape3D_is4af")

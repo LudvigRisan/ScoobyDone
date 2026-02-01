@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cf77vqrbqtkfe"]
+
+[ext_resource type="ArrayMesh" uid="uid://dhk3hwencyis" path="res://Placeholders/place(1).obj" id="1_e4tfu"]
+[ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_wlq6j"]
+[ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="3_oxglx"]
+[ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_428fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
+cull_mode = 2
+albedo_texture = ExtResource("2_wlq6j")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_is4af"]
+backface_collision = true
+
+[node name="MaskPlaceholder" type="MeshInstance3D" unique_id=36775848]
+mesh = ExtResource("1_e4tfu")
+surface_material_override/0 = SubResource("StandardMaterial3D_d25rr")
+script = ExtResource("3_oxglx")
+tension = 4278.49
+physicsPrefab = ExtResource("4_428fn")
+
+[node name="statics" type="StaticBody3D" parent="." unique_id=754765684]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="statics" unique_id=1968498523]
+shape = SubResource("ConcavePolygonShape3D_is4af")

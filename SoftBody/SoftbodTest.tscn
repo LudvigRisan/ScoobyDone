@@ -1,18 +1,8 @@
 [gd_scene format=3 uid="uid://b3phsaphmogq7"]
 
-[ext_resource type="ArrayMesh" uid="uid://dhk3hwencyis" path="res://Placeholders/place(1).obj" id="1_7dpk5"]
-[ext_resource type="Script" uid="uid://bo3xsvdkv7j5c" path="res://SoftBody/SoftbodyMesh.gd" id="1_x0qe0"]
-[ext_resource type="Texture2D" uid="uid://doepiccc2cafa" path="res://Placeholders/placeholder texture_0.png" id="2_ej6tx"]
-[ext_resource type="PackedScene" uid="uid://dqaswduc33hja" path="res://SoftBody/physicsPrefab.tscn" id="4_vok87"]
-[ext_resource type="Script" uid="uid://b5nql880g2y2k" path="res://SoftBody/CamScript.gd" id="6_3w1w3"]
-[ext_resource type="Script" uid="uid://jiagxdqiu4kj" path="res://SoftBody/WinDetector.gd" id="6_is4af"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d25rr"]
-cull_mode = 2
-albedo_texture = ExtResource("2_ej6tx")
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_is4af"]
-backface_collision = true
+[ext_resource type="PackedScene" uid="uid://cf77vqrbqtkfe" path="res://PrefabParts/mask.tscn" id="1_ej6tx"]
+[ext_resource type="PackedScene" uid="uid://bvx238oy64qhd" path="res://PrefabParts/cam.tscn" id="2_vok87"]
+[ext_resource type="PackedScene" uid="uid://i828fv08hjya" path="res://PrefabParts/winDetector.tscn" id="3_7dpk5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_d25rr"]
 
@@ -36,36 +26,17 @@ rough = true
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7dpk5"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_is4af"]
-radius = 1.275
-
 [node name="Node3D" type="Node3D" unique_id=972586230]
 
-[node name="MaskPlaceholder" type="MeshInstance3D" parent="." unique_id=2087618148]
-mesh = ExtResource("1_7dpk5")
-surface_material_override/0 = SubResource("StandardMaterial3D_d25rr")
-script = ExtResource("1_x0qe0")
-tension = 4278.49
-physicsPrefab = ExtResource("4_vok87")
-
-[node name="statics" type="StaticBody3D" parent="MaskPlaceholder" unique_id=1436075487]
-collision_layer = 2
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MaskPlaceholder/statics" unique_id=1765531546]
-shape = SubResource("ConcavePolygonShape3D_is4af")
+[node name="MaskPlaceholder" parent="." unique_id=36775848 instance=ExtResource("1_ej6tx")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1241247983]
 environment = SubResource("Environment_d25rr")
 camera_attributes = SubResource("CameraAttributesPractical_ej6tx")
 compositor = SubResource("Compositor_vok87")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=310944428 node_paths=PackedStringArray("physicsParent")]
-transform = Transform3D(0.0025460175, 0.025380166, -0.9996747, 0, 0.9996779, 0.025380248, 0.9999968, -6.461856e-05, 0.0025451975, -3.809359, 0.5903368, -0.24731348)
-current = true
-script = ExtResource("6_3w1w3")
-physicsParent = NodePath("../MaskPlaceholder")
-maxDistSqr = 0.355
-dragForce = 1.105
+[node name="Camera3D" parent="." unique_id=1252350004 instance=ExtResource("2_vok87")]
+transform = Transform3D(0.0025460254, 0.025380166, -0.9996747, 0, 0.9996779, 0.025380248, 0.9999968, -6.4618755e-05, 0.0025452054, -3.809359, 0.5903368, -0.24731348)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1504699499]
 transform = Transform3D(1.9, 0, 0, 0, 1.9, 0, 0, 0, 1.9, 0, -0.006126404, 0)
@@ -77,10 +48,4 @@ mesh = SubResource("SphereMesh_7dpk5")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1618171975]
 shape = SubResource("SphereShape3D_7dpk5")
 
-[node name="WinDetection" type="Area3D" parent="." unique_id=967957051]
-collision_layer = 4
-collision_mask = 4
-script = ExtResource("6_is4af")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="WinDetection" unique_id=1916898572]
-shape = SubResource("SphereShape3D_is4af")
+[node name="WinDetection" parent="." unique_id=699719954 instance=ExtResource("3_7dpk5")]
