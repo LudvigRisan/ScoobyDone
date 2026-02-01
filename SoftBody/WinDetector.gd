@@ -1,6 +1,9 @@
 extends Area3D
 
-func _process(delta: float) -> void:
+@export
+var nextScene: PackedScene
+
+func _process(_delta: float) -> void:
 	var bodies = get_overlapping_bodies()
 	if bodies.is_empty():
-		print("YOU WIN!")
+		get_tree().change_scene_to_packed(nextScene)
