@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxo0umtsnofgs"
-path.s3tc="res://.godot/imported/Diver_Base_color.png-c450ce7e2a00a1f42ad8279d763e0833.s3tc.ctex"
+uid="uid://5pkoxsmf2fb5"
+path.s3tc="res://.godot/imported/FEEESH.png-12fd90bad2bbbfa77f6283ad9d72b6b0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Placeholders/Diver_Base_color.png"
-dest_files=["res://.godot/imported/Diver_Base_color.png-c450ce7e2a00a1f42ad8279d763e0833.s3tc.ctex"]
+source_file="res://Heads/FEEESH.png"
+dest_files=["res://.godot/imported/FEEESH.png-12fd90bad2bbbfa77f6283ad9d72b6b0.s3tc.ctex"]
 
 [params]
 
