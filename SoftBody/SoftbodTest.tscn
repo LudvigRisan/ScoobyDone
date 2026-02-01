@@ -29,6 +29,7 @@ ambient_light_energy = 2.45
 [sub_resource type="Compositor" id="Compositor_vok87"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7dpk5"]
+rough = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_7dpk5"]
 
@@ -40,7 +41,7 @@ ambient_light_energy = 2.45
 mesh = ExtResource("1_7dpk5")
 surface_material_override/0 = SubResource("StandardMaterial3D_d25rr")
 script = ExtResource("1_x0qe0")
-tension = 1240.435
+tension = 4278.49
 physicsPrefab = ExtResource("4_vok87")
 
 [node name="statics" type="StaticBody3D" parent="MaskPlaceholder" unique_id=1436075487]
@@ -59,6 +60,8 @@ transform = Transform3D(0.0025460175, 0.025380166, -0.9996747, 0, 0.9996779, 0.0
 current = true
 script = ExtResource("6_3w1w3")
 physicsParent = NodePath("../MaskPlaceholder")
+maxDistSqr = 0.355
+dragForce = 1.105
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1504699499]
 transform = Transform3D(1.9, 0, 0, 0, 1.9, 0, 0, 0, 1.9, 0, -0.006126404, 0)
