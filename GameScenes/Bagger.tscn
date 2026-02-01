@@ -57,9 +57,23 @@ compositor = SubResource("Compositor_gp0lq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=1295313221]
 transform = Transform3D(-0.3801719, 0.746329, -0.54631704, 0, 0.5906668, 0.8069156, 0.92491585, 0.30676663, -0.22455491, 0, 0, 0)
-light_color = Color(0.79605556, 0.7314088, 0.6469785, 1)
-light_energy = 0.86
+light_color = Color(0.88692236, 0.76197016, 0.9245689, 1)
+light_energy = 0.915
+light_indirect_energy = 1.952
+light_specular = 0.99
 shadow_enabled = true
+
+[node name="SpotLight3D" type="SpotLight3D" parent="WorldEnvironment" unique_id=136501161]
+transform = Transform3D(0.901372, 0, 0.43304566, 0.15495682, 0.9337867, -0.3225381, -0.40437227, 0.3578302, 0.84168917, -5.998478, -0.9694283, -1.6232803)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="WorldEnvironment" unique_id=361260625]
+transform = Transform3D(0.9733915, -0.09968703, 0.20632926, 0.17162257, 0.9137826, -0.3681672, -0.15183859, 0.39378145, 0.90657663, -0.13292837, -3.62573, -0.45142066)
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="WorldEnvironment" unique_id=247080916]
+transform = Transform3D(0.97868323, -0.19210446, -0.07262954, 0.18985358, 0.98112315, -0.03678398, 0.078324884, 0.022210883, 0.9966805, 5.2698455, -2.599628, 1.6541786)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="WorldEnvironment" unique_id=683583547]
+transform = Transform3D(0.9810438, -0.19162302, -0.028874092, 0.19106181, 0.9813511, -0.021106858, 0.032380182, 0.015190016, 0.9993602, 10.232832, -3.2628186, 1.3870091)
 
 [node name="MaskPlaceholder" parent="." unique_id=36775848 instance=ExtResource("1_wrycf")]
 material_override = SubResource("StandardMaterial3D_uhlsa")
