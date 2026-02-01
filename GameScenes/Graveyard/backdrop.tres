@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwtrmsj6ad5st"]
+
+[ext_resource type="Texture2D" uid="uid://2sne1ut18xne" path="res://GameScenes/Graveyard/backdrop_Base_color.png" id="1_ytitv"]
+
+[resource]
+resource_name = "backdrop"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_ytitv")
+emission_enabled = true

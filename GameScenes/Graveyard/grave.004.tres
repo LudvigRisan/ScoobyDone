@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4befgw6acc8j"]
+
+[ext_resource type="Texture2D" uid="uid://gjmae5wl8mt3" path="res://GameScenes/Graveyard/grave.004_Base_color.png" id="1_pfyd8"]
+
+[resource]
+resource_name = "grave.004"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_pfyd8")
+emission_enabled = true

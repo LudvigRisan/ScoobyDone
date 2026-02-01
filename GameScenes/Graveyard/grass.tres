@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://oxv2fqtq15f7"]
+
+[ext_resource type="Texture2D" uid="uid://dvvgbhxdv3xwu" path="res://GameScenes/Graveyard/grass_Base_color.png" id="1_m5owl"]
+
+[resource]
+resource_name = "grass"
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_m5owl")
+emission_enabled = true

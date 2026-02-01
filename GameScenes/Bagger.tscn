@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://i828fv08hjya" path="res://PrefabParts/winDetector.tscn" id="7_31r61"]
 [ext_resource type="Script" uid="uid://cmcplqfbvk130" path="res://SoftBody/Timer.gd" id="9_sym7p"]
 [ext_resource type="PackedScene" uid="uid://cqqfq4m4ncdmk" path="res://GameScenes/Diver.tscn" id="10_8ufgl"]
+[ext_resource type="AudioStream" uid="uid://bt26mnftdfc0f" path="res://Sounds/Carboard mask.mp3" id="11_7ufip"]
+[ext_resource type="PackedScene" uid="uid://b04hmop07m6um" path="res://GameScenes/Graveyard/The old Cemetary.fbx" id="12_uhlsa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pr1sh"]
 
@@ -80,16 +82,28 @@ transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0,
 shape = SubResource("ConcavePolygonShape3D_8ufgl")
 
 [node name="Camera3D" parent="." unique_id=1252350004 node_paths=PackedStringArray("physicsParent") instance=ExtResource("6_q5trh")]
-transform = Transform3D(0.99998105, 0.00043483006, -0.006148026, 0, 0.9975082, 0.070550546, 0.006163384, -0.070549205, 0.9974893, -0.1355326, 1.4370136, 3.9118817)
+transform = Transform3D(0.99998105, 0.00043483006, -0.006148026, 0, 0.9975082, 0.070550546, 0.006163384, -0.070549205, 0.9974893, -0.16083737, 1.7273939, 8.017466)
+fov = 49.5
 physicsParent = NodePath("../MaskPlaceholder")
 maxDistSqr = 2.055
 dragForce = 2.785
 
 [node name="Label3D" type="Label3D" parent="Camera3D" unique_id=2134192364]
-transform = Transform3D(0.9045196, 0, -0.029478956, -0.005268644, 0.8904284, -0.16166079, 0.029004317, 0.16174664, 0.88995594, -1.8498309, 0.98341584, -1.4280236)
+transform = Transform3D(0.9045196, 0, -0.029478956, -0.005268644, 0.8904284, -0.16166079, 0.029004317, 0.16174664, 0.88995594, -1.2229468, 0.648451, -1.6497024)
+text = "lorem ipsum"
 horizontal_alignment = 0
 script = ExtResource("9_sym7p")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D" unique_id=2041257878]
 
 [node name="WinDetection" parent="." unique_id=699719954 instance=ExtResource("7_31r61")]
 transform = Transform3D(1.06, 0, 0, 0, 1.06, 0, 0, 0, 1.06, 0, 0, 0)
 nextScene = ExtResource("10_8ufgl")
+
+[node name="CarboardMask" type="AudioStreamPlayer3D" parent="." unique_id=676823029]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0022358447, 1.1588469, 0.0034027249)
+stream = ExtResource("11_7ufip")
+autoplay = true
+
+[node name="The old Cemetary" parent="." unique_id=499968839 instance=ExtResource("12_uhlsa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58452654, -4.179102, 6.04694)
