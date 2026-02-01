@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bt26mnftdfc0f"
+path="res://.godot/imported/Carboard mask.mp3-299a4047c974003cfde26151d572abab.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Carboard mask.mp3"
+dest_files=["res://.godot/imported/Carboard mask.mp3-299a4047c974003cfde26151d572abab.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

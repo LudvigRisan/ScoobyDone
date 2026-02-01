@@ -9,15 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://i828fv08hjya" path="res://PrefabParts/winDetector.tscn" id="7_h3p3v"]
 [ext_resource type="PackedScene" uid="uid://bn0xh01d62d03" path="res://GameScene.tscn" id="8_nk63b"]
 [ext_resource type="Script" uid="uid://cmcplqfbvk130" path="res://SoftBody/Timer.gd" id="8_ubqu2"]
+[ext_resource type="PackedScene" uid="uid://sdadws7ut8nk" path="res://GameScenes/Lagoon/Lurker Lagoon.fbx" id="10_vlwx7"]
+[ext_resource type="AudioStream" uid="uid://ublt65dk32uw" path="res://Sounds/Underwater mask.mp3" id="11_0auel"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h3p3v"]
 
-[sub_resource type="Sky" id="Sky_ubqu2"]
+[sub_resource type="Sky" id="Sky_gui3u"]
 sky_material = SubResource("ProceduralSkyMaterial_h3p3v")
 
 [sub_resource type="Environment" id="Environment_nk63b"]
 background_mode = 2
-sky = SubResource("Sky_ubqu2")
+sky = SubResource("Sky_gui3u")
 
 [sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_h3p3v"]
 
@@ -40,12 +42,18 @@ environment = SubResource("Environment_nk63b")
 camera_attributes = SubResource("CameraAttributesPractical_h3p3v")
 compositor = SubResource("Compositor_ubqu2")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment" unique_id=967789619]
+transform = Transform3D(-0.3801719, 0.746329, -0.54631704, 0, 0.5906668, 0.8069156, 0.92491585, 0.30676663, -0.22455491, 0, 0, 0)
+light_color = Color(0.79605556, 0.7314088, 0.6469785, 1)
+light_energy = 0.86
+shadow_enabled = true
+
 [node name="MaskPlaceholder" parent="." unique_id=36775848 instance=ExtResource("1_gehmc")]
 material_override = SubResource("StandardMaterial3D_h3p3v")
 mesh = ExtResource("3_pjcwn")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1364551833]
-transform = Transform3D(-0.905, 0, -7.911761e-08, 0, 0.905, 0, 7.911761e-08, 0, -0.905, 0, 0.5389602, 0)
+transform = Transform3D(-0.905, 0, -7.911761e-08, 0, 0.905, 0, 7.911761e-08, 0, -0.905, -0.060691234, 0.5389602, 5.3057962e-09)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1158759927]
 transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
@@ -60,6 +68,8 @@ mesh = ExtResource("2_jaf58")
 transform = Transform3D(0.07234448, 0.17825727, -0.98132086, 0, 0.983899, 0.17872559, 0.9973797, -0.012929809, 0.07117966, -4.6490507, 0.95577604, -0.016221046)
 physicsParent = NodePath("../MaskPlaceholder")
 
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D" unique_id=1169152567]
+
 [node name="WinDetection" parent="." unique_id=699719954 instance=ExtResource("7_h3p3v")]
 transform = Transform3D(1.06, 0, 0, 0, 1.06, 0, 0, 0, 1.06, 0, 0, 0)
 nextScene = ExtResource("8_nk63b")
@@ -68,3 +78,11 @@ nextScene = ExtResource("8_nk63b")
 transform = Transform3D(0.03603529, 0, -0.9042822, 0, 0.9049999, 0, 0.9042822, 0, 0.03603529, -3.2062256, 1.6681336, -1.9755664)
 horizontal_alignment = 0
 script = ExtResource("8_ubqu2")
+
+[node name="Lurker Lagoon" parent="." unique_id=724799648 instance=ExtResource("10_vlwx7")]
+transform = Transform3D(0.036172718, 0, -0.9993456, 0, 1, 0, 0.9993456, 0, 0.036172718, 19.89534, -7.260773, 4.9722676)
+
+[node name="UnderwaterMask" type="AudioStreamPlayer3D" parent="." unique_id=1337289951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0006266209, 0.10174459, -0.016318727)
+stream = ExtResource("11_0auel")
+autoplay = true
